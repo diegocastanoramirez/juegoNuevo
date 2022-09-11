@@ -1,12 +1,13 @@
 .juego {
-    width: 900px;
+    width: 840px;
     height: 600px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: 5px solid coral;
     margin: 0px 0px 0px 0px;
     display: flex;
     flex-wrap: wrap; 
     float: right;  
+    background-color: rgb(246, 86, 86);
 }
 
 .menu {
@@ -33,10 +34,12 @@
 .boton1{
     padding: 10px 30px;
     margin-right: 5px;
+    border-radius: 30px;
 }
 .boton2{
     padding: 10px 30px;
     margin-left: 10px;
+    border-radius: 30px;
 }
 .titulo .puntajes{
     font-family: 'Rubik Dirt', cursive;

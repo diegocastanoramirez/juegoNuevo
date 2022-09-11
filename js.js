@@ -21,6 +21,28 @@ nombre:"grupo" },
 nombre:"peludo" },
 {url:"imagenes/imagen10.jpg",
 nombre:"robot" },
+{url:"imagenes/imagen11.jpg",
+nombre:"morena" },
+{url:"imagenes/imagen12.jpg",
+nombre:"barbie" },
+{url:"imagenes/imagen13.jpg",
+nombre:"pepahermano" },
+{url:"imagenes/imagen14.jpg",
+nombre:"hermanopepa" },
+{url:"imagenes/imagen15.jpg",
+nombre:"pepavoladora" },
+{url:"imagenes/imagen16.jpg",
+nombre:"bug" },
+{url:"imagenes/imagen17.jpg",
+nombre:"bugamigos" },
+{url:"imagenes/imagen18.jpg",
+nombre:"gallo" },
+{url:"imagenes/imagen19.jpg",
+nombre:"elcompa" },
+{url:"imagenes/imagen20.jpg",
+nombre:"noviacompa" },
+{url:"imagenes/imagen21.jpg",
+nombre:"pitufina" },
 {url:"imagenes/imagen1.jpg",
 nombre:"morada" },
 {url:"imagenes/imagen2.jpg",
@@ -41,7 +63,31 @@ nombre:"grupo" },
 nombre:"peludo" },
 {url:"imagenes/imagen10.jpg",
 nombre:"robot" },
+{url:"imagenes/imagen11.jpg",
+nombre:"morena" },
+{url:"imagenes/imagen12.jpg",
+nombre:"barbie" },
+{url:"imagenes/imagen13.jpg",
+nombre:"pepahermano" },
+{url:"imagenes/imagen14.jpg",
+nombre:"hermanopepa" },
+{url:"imagenes/imagen15.jpg",
+nombre:"pepavoladora" },
+{url:"imagenes/imagen16.jpg",
+nombre:"bug" },
+{url:"imagenes/imagen17.jpg",
+nombre:"bugamigos" },
+{url:"imagenes/imagen18.jpg",
+nombre:"gallo" },
+{url:"imagenes/imagen19.jpg",
+nombre:"elcompa" },
+{url:"imagenes/imagen20.jpg",
+nombre:"noviacompa" },
+{url:"imagenes/imagen21.jpg",
+nombre:"pitufina" }
 ];
+//mover posicion imagenes 
+imagenes.sort(()=>Math.random()-0.5);
 
 /*LLENAR CUADRO*/
 const $tablero=document.querySelector(".juego");
@@ -50,8 +96,8 @@ function llernartablero(){
 
         let $img = document.createElement("img");
         $img.setAttribute("src","imagenes/pregunta.jpg");
-        $img.setAttribute("width","180px");
-        $img.setAttribute("height","150px");
+        $img.setAttribute("width","120px");
+        $img.setAttribute("height","100px");
         $img.style.borderRadius ="20PX";
         $img.setAttribute("position",i);
         $tablero.appendChild($img);
@@ -78,28 +124,32 @@ function mostrarimagen(){
     this.setAttribute("src",[imagenes[posiciones].url]);
 
     if(posicion.length===2){
-      setTimeout (compararimagen,700);
+    
+        setTimeout (compararimagen,600);
     };  
 };
 
 /*COMPARAR IMAGEN*/
 function compararimagen(){
+    
     if(nombres[0]===nombres[1]){
         $todasimg[posicion[0]].setAttribute("src","imagenes/chulo.jpg");
         $todasimg[posicion[1]].setAttribute("src","imagenes/chulo.jpg");
         $todasimg[posicion[0]].removeEventListener('click',mostrarimagen);
         $todasimg[posicion[1]].removeEventListener('click',mostrarimagen);
-        contador=contador+5;
+        contador=contador+1;
 
         //contar puntos ganador
         if( $textjugador.textContent==="Puntajes"){
             if(contaciertos===1){
                 puntajeuno=parseInt(puntajeuno)+1;
                 $puntaje1.textContent=puntajeuno;
+                
             }
-                else{
+                else if(contaciertos===2){
                     puntajedos=parseInt(puntajedos)+1;
                     $puntaje2.textContent=puntajedos;
+                    
                 }
         
         }   
@@ -119,7 +169,7 @@ function compararimagen(){
             if(contaciertos===1){
                 contaciertos=2;
             }
-               else{
+               else if(contaciertos===2){
                 contaciertos=1;
                }    
         }     
@@ -128,13 +178,23 @@ function compararimagen(){
     posicion = [];
     nombres = [];
     
-    if (contador==10){
-        sw=parseInt(sw)+1;
+    if (contador==21){
+        contaciertos=1;
+        
         if($textjugador.textContent==="Puntajes"){
             
             if(parseInt(puntajeuno)>parseInt(puntajedos)){
                 //mostrar ganador
-                $imagen1.setAttribute("src","imagenes/imagen2-fondo.jpg");
+                sw2=parseInt(sw)%2;
+
+                if(sw2===0){
+                    $imagen1.setAttribute("src","imagenes/imagen3-fondo.jpg");
+
+                }
+                    else{
+                        $imagen1.setAttribute("src","imagenes/imagen2-fondo.jpg");
+                    }
+                
                 $personajes.removeChild($imagen2);
                 $puntajejugadores.removeChild($texpuntaje2);
                 $menu.removeChild($textjugador); 
@@ -146,8 +206,9 @@ function compararimagen(){
                 $personajes.removeChild($imagen1);
                 $puntajejugadores.removeChild($texpuntaje1);
                 $menu.removeChild($boton111);
-                for(i=0;i<20;i++){
+                for(i=0;i<42;i++){
                     $todasimg[i].setAttribute("src","imagenes/pregunta.jpg");  
+                    $todasimg[i].removeEventListener("click",mostrarimagen);
                     contador=0;
                 }; 
                 $boton1.style.display="inline-block";
@@ -156,14 +217,37 @@ function compararimagen(){
                 puntajedos=0;
                 },7000);
             }
-                else if(parseInt(puntajeuno)==parseInt(puntajedos)){
+                else if(parseInt(puntajeuno)===parseInt(puntajedos)){
                     //mostrar ganador
-                    $imagen2.setAttribute("src","imagenes/imagen3-fondo.jpg");
-                    $imagen1.setAttribute("src","imagenes/imagen2-fondo.jpg");
-                    $imagen2.style.width="150px";
-                    $imagen1.style.width="150px";
-                    $imagen2.style.height="180px";
-                    $imagen2.style.marginRight= "0px";
+                    
+                    sw2=parseInt(sw)%2;
+
+                    if(sw2===0){
+                        $imagen1.setAttribute("src","imagenes/imagen3-fondo.jpg");
+                        $imagen2.setAttribute("src","imagenes/imagen2-fondo.jpg");
+                        $imagen2.style.width="130px";
+                        $imagen2.style.height="180px";
+                        $imagen1.style.width="130px";
+                        $imagen1.style.height="180px";
+                        $imagen1.style.marginRight="5px";
+                        $imagen2.style.marginLeft="5px";
+
+                        $imagen2.style.marginRight= "0px";
+
+                    }
+                        else{
+                            $imagen1.setAttribute("src","imagenes/imagen2-fondo.jpg");
+                            $imagen2.setAttribute("src","imagenes/imagen3-fondo.jpg");
+                            $imagen2.style.width="130px";
+                            $imagen2.style.height="180px";
+                            $imagen1.style.width="130px";
+                            $imagen1.style.height="180px";
+                            $imagen1.style.marginRight="5px";
+                            $imagen2.style.marginLeft="5px";
+
+                            $imagen2.style.marginRight= "0px";
+                        }
+                    
 
                     
                     setTimeout(()=>{
@@ -171,11 +255,13 @@ function compararimagen(){
                      $personajes.removeChild($imagen2);
                      $puntajejugadores.removeChild($texpuntaje2);
                      $menu.removeChild($boton22);
+                     $menu.removeChild($textjugador); 
                      $personajes.removeChild($imagen1);
                      $puntajejugadores.removeChild($texpuntaje1);
                      $menu.removeChild($boton111);
-                    for(i=0;i<20;i++){
+                    for(i=0;i<42;i++){
                         $todasimg[i].setAttribute("src","imagenes/pregunta.jpg");  
+                        $todasimg[i].removeEventListener("click",mostrarimagen); 
                         contador=0;
                     }; 
                     $boton1.style.display="inline-block";
@@ -186,10 +272,18 @@ function compararimagen(){
                 }
                     else if(parseInt(puntajeuno)<parseInt(puntajedos)){
                         //mostrar ganador
-                        $imagen2.setAttribute("src","imagenes/imagen3-fondo.jpg");
+                        if(sw2===0){
+                            $imagen2.setAttribute("src","imagenes/imagen2-fondo.jpg");
+        
+                        }
+                            else{
+                                $imagen2.setAttribute("src","imagenes/imagen3-fondo.jpg");
+                            }
+                        
                         $personajes.removeChild($imagen1);
                         $puntajejugadores.removeChild($texpuntaje1);
                         $menu.removeChild($boton111);
+                        $menu.removeChild($textjugador); 
                         $texpuntaje2.style.marginLeft="0px";
                         $boton22.style.marginLeft="0px";
                         $imagen2.style.marginRight="0px";
@@ -203,8 +297,9 @@ function compararimagen(){
                         $personajes.removeChild($imagen2);
                         $puntajejugadores.removeChild($texpuntaje2);
                         $menu.removeChild($boton22);
-                        for(i=0;i<20;i++){
-                            $todasimg[i].setAttribute("src","imagenes/pregunta.jpg");  
+                        for(i=0;i<42;i++){
+                            $todasimg[i].setAttribute("src","imagenes/pregunta.jpg"); 
+
                             contador=0;
                         }; 
                         $boton1.style.display="inline-block";
@@ -226,8 +321,9 @@ function compararimagen(){
             $menu.removeChild($textjugador);
             $menu.removeChild($boton11);
             $menu.removeChild($texpuntaje1);
-            for(i=0;i<20;i++){
+            for(i=0;i<42;i++){
                 $todasimg[i].setAttribute("src","imagenes/pregunta.jpg");  
+                $todasimg[i].removeEventListener("click",mostrarimagen);
                 contador=0;
             };     
             $boton1.style.display="inline-block";
@@ -235,7 +331,7 @@ function compararimagen(){
             puntajeuno=0;
             },7000);
         }
-                 
+        sw=parseInt(sw)+1;          
     } 
 
 }
@@ -271,7 +367,7 @@ $boton2.addEventListener('click',jugadores);
 
 
 //quitar evento click
-for(i=0;i<20;i++){
+for(i=0;i<42;i++){
      $todasimg[i].removeEventListener('click',mostrarimagen);   
 };
         
@@ -279,7 +375,7 @@ for(i=0;i<20;i++){
 //mostrar personajes para seleccionar
 function jugadores(){
 //poner evento click
-for(i=0;i<20;i++){
+for(i=0;i<42;i++){
     $todasimg[i].addEventListener('click',mostrarimagen);   
 };
 
@@ -341,19 +437,23 @@ for(i=0;i<20;i++){
         $imagen1 =document.createElement("img");
         $imagen2 =document.createElement("img");
         sw2=parseInt(sw)%2;
-        
+
         if(sw2===0){
-            $imagen1.setAttribute("src","imagenes/imagen3.jpg");
             $imagen2.setAttribute("src","imagenes/imagen2.jpg");
-            $imagen1.classList.add("personaje2");
+            $imagen1.setAttribute("src","imagenes/imagen3.jpg");
             $imagen2.classList.add("personaje1");
+            $imagen1.classList.add("personaje2");
         }
             else{
+                
+
                 $imagen2.setAttribute("src","imagenes/imagen3.jpg");
                 $imagen1.setAttribute("src","imagenes/imagen2.jpg");
                 $imagen2.classList.add("personaje2");
                 $imagen1.classList.add("personaje1");
+            
             }
+            
         
         
         $personajes.appendChild($imagen1);
