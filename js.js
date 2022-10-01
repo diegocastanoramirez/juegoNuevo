@@ -96,10 +96,13 @@ function llernartablero(){
 
         let $img = document.createElement("img");
         $img.setAttribute("src","imagenes/pregunta.jpg");
-        $img.setAttribute("width","120px");
-        $img.setAttribute("height","100px");
-        $img.style.borderRadius ="20PX";
+        /* 
+        $img.setAttribute("width","10%");
+        $img.setAttribute("height","10%");
+        */
+        $img.style.borderRadius ="10%";
         $img.setAttribute("position",i);
+        $img.classList.add("imagenes");
         $tablero.appendChild($img);
         $img.addEventListener('click',mostrarimagen);
     };
@@ -336,7 +339,7 @@ function compararimagen(){
 
 }
 //titulo grande
-$menu=document.querySelector(".menu");
+$menu=document.querySelector(".menus");
 $titulo=document.createElement("div");
 
 $numjugadores=document.createElement("h1");
